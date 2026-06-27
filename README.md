@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frostline ❄️
 
-## Getting Started
+A UK e-commerce store selling portable air conditioners, fans, evaporative
+coolers and dehumidifiers — built and ready for the next British summer.
 
-First, run the development server:
+Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript** and
+**Tailwind CSS v4**.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # start the dev server (http://localhost:3000)
+npm run build    # production build
+npm start        # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## What's included
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Homepage** — hero, category grid, bestsellers, value props, waitlist capture
+- **Shop** (`/shop`) — all products with client-side category filtering
+- **Category pages** (`/shop/category/[slug]`)
+- **Product pages** (`/shop/[slug]`) — gallery tile, specs, features, related items
+- **Cart** — slide-out drawer + full cart page, persisted to `localStorage`
+- **Checkout** (`/checkout`) — delivery form + order summary (payment is a
+  placeholder; see below)
+- Content pages: About, Help/FAQ, Delivery & Returns, Privacy, Terms
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Editing the catalogue
 
-## Learn More
+All products and categories live in **`src/lib/products.ts`**. Each product has
+a price (GBP), specs, features, rating and a gradient/emoji "image" tile. Edit
+that one file to add, remove or reprice products — every page updates
+automatically.
 
-To learn more about Next.js, take a look at the following resources:
+## Going live — next steps
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This ships as a fully working catalogue + cart. To take real money:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **Payments** — wire Stripe (or similar) into `src/app/checkout/page.tsx`
+   where `placeOrder` currently just confirms the order. Add a checkout API
+   route and your keys via environment variables.
+2. **Waitlist** — `src/components/WaitlistForm.tsx` currently stores emails in
+   `localStorage`. Point it at your email/CRM provider (e.g. Mailchimp, Klaviyo).
+3. **Real product images** — swap the emoji tiles in `src/components/ProductImage.tsx`
+   for photos (add an `image` field to each product and use `next/image`).
+4. **Branding** — the name "Frostline" lives in the Navbar, Footer, layout
+   metadata and content pages; rename there if needed.
