@@ -6,7 +6,7 @@ import {
   getCategory,
   productsByCategory,
 } from "@/lib/products";
-import ProductCard from "@/components/ProductCard";
+import ProductBrowser from "@/components/ProductBrowser";
 
 export function generateStaticParams() {
   return categories.map((c) => ({ slug: c.slug }));
@@ -54,10 +54,8 @@ export default async function CategoryPage({
         <p className="mt-3 text-lg text-ink/60">{category.blurb}</p>
       </header>
 
-      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {items.map((p) => (
-          <ProductCard key={p.slug} product={p} />
-        ))}
+      <div className="mt-10">
+        <ProductBrowser products={items} />
       </div>
     </div>
   );

@@ -13,6 +13,9 @@ export type Product = {
   oldPrice?: number;
   rating: number;
   reviews: number;
+  noise?: number; // lowest noise level, dB
+  btu?: number; // cooling power (air conditioners)
+  roomSize?: number; // max room coverage, m²
   badge?: string;
   short: string;
   description: string;
@@ -70,6 +73,9 @@ export const products: Product[] = [
     oldPrice: 449.99,
     rating: 4.8,
     reviews: 214,
+    noise: 52,
+    btu: 12000,
+    roomSize: 30,
     badge: "Bestseller",
     short: "Cools rooms up to 30m² with 3-in-1 cool, fan & dehumidify modes.",
     description:
@@ -100,6 +106,9 @@ export const products: Product[] = [
     price: 249.99,
     rating: 4.6,
     reviews: 138,
+    noise: 48,
+    btu: 7000,
+    roomSize: 18,
     short: "Compact cooling for bedrooms & home offices up to 18m².",
     description:
       "Small footprint, big relief. The Arctic Mini slips neatly into bedrooms, studies and box rooms, delivering 7,000 BTU of cooling without dominating the space. Castor wheels make it easy to move wherever the sun's beating down.",
@@ -130,6 +139,7 @@ export const products: Product[] = [
     oldPrice: 109.99,
     rating: 4.7,
     reviews: 326,
+    noise: 35,
     badge: "Top rated",
     short: "Slim 42-inch tower fan with 12 speeds and a remote.",
     description:
@@ -159,6 +169,7 @@ export const products: Product[] = [
     price: 129.99,
     rating: 4.5,
     reviews: 187,
+    noise: 32,
     badge: "New",
     short: "Safe, easy-clean bladeless design with smooth airflow.",
     description:
@@ -188,6 +199,7 @@ export const products: Product[] = [
     price: 24.99,
     rating: 4.4,
     reviews: 512,
+    noise: 28,
     short: "Rechargeable personal fan for desks, prams & travel.",
     description:
       "Personal cooling that goes anywhere. The Desk Breeze Mini runs up to 14 hours on a charge, tilts to any angle and is quiet enough for the office. Perfect for desks, bedside tables, prams and picnics.",
@@ -217,6 +229,7 @@ export const products: Product[] = [
     oldPrice: 189.99,
     rating: 4.3,
     reviews: 96,
+    noise: 54,
     short: "Low-energy cooling with a 7L tank and ice packs included.",
     description:
       "All the relief, a fraction of the running cost. The FrostFlow draws air through water-chilled pads to drop the temperature, using a tiny amount of electricity compared to an air conditioner. The 7-litre tank and included ice packs keep it going for hours.",
@@ -245,6 +258,7 @@ export const products: Product[] = [
     price: 49.99,
     rating: 4.1,
     reviews: 233,
+    noise: 30,
     short: "Personal evaporative cooler for desks and bedsides.",
     description:
       "Your own pocket of cool. This compact evaporative cooler sits on a desk or bedside table, misting chilled air exactly where you need it. Fill the tank, drop in the ice and enjoy quiet, focused cooling.",
@@ -273,6 +287,7 @@ export const products: Product[] = [
     price: 199.99,
     rating: 4.7,
     reviews: 174,
+    noise: 42,
     badge: "Bestseller",
     short: "Pulls 20L/day of moisture to beat damp and muggy heat.",
     description:
