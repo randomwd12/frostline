@@ -29,6 +29,7 @@ export default function Logo({
           </linearGradient>
         </defs>
         <rect width="56" height="40" rx="12" fill={`url(#${gradId})`} />
+        {/* Wind streaming off the left of the B */}
         <g
           fill="none"
           stroke="#fff"
@@ -36,15 +37,22 @@ export default function Logo({
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          {/* The B */}
-          <path d="M30 8 V32" />
-          <path d="M30 8 H40 a6 6 0 0 1 0 12 H30" />
-          <path d="M30 20 H42 a6.5 6.5 0 0 1 0 12 H30" />
-          {/* Wind streaming off the left */}
-          <path d="M30 12 H14 a3 3 0 1 1 3 -3" />
-          <path d="M30 20 H9 a3.3 3.3 0 1 0 -3.3 3.3" />
-          <path d="M30 28 H16 a3 3 0 1 1 3 3" />
+          <path d="M33 13 H17 a3 3 0 1 1 3 -3" />
+          <path d="M33 20 H12 a3.3 3.3 0 1 0 -3.3 3.3" />
+          <path d="M33 27 H19 a3 3 0 1 1 3 3" />
         </g>
+        {/* Bold B in the site font */}
+        <text
+          x="40"
+          y="29"
+          fontSize="26"
+          fontWeight="800"
+          fill="#fff"
+          textAnchor="middle"
+          fontFamily="var(--font-sans), system-ui, sans-serif"
+        >
+          B
+        </text>
       </svg>
 
       {/* Wordmark */}
