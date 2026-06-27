@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Help & FAQs — Frostline",
-  description: "Answers to common questions about Frostline cooling appliances, delivery, returns and guarantees.",
+  title: "Help & FAQs — Breezely",
+  description: "Answers to common questions about Breezely cooling appliances, delivery, returns and guarantees.",
 };
 
 const faqs = [
@@ -64,8 +64,8 @@ export default function HelpPage() {
         <p className="mt-2 text-ink/60">
           Our UK team is here Monday to Friday, 9am–5pm.
         </p>
-        <a href="mailto:hello@frostline.co.uk" className="btn-accent mt-5">
-          Email hello@frostline.co.uk
+        <a href="mailto:hello@breezely.co.uk" className="btn-accent mt-5">
+          Email hello@breezely.co.uk
         </a>
         <p className="mt-4 text-sm text-ink/50">
           Or read our{" "}

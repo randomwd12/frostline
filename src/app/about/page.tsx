@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About — Frostline",
+  title: "About — Breezely",
   description:
-    "Frostline is a UK cooling specialist helping homes and offices stay comfortable through hotter British summers.",
+    "Breezely is a UK cooling specialist helping homes and offices stay comfortable through hotter British summers.",
 };
 
 const stats = [
@@ -23,7 +23,7 @@ export default function AboutPage() {
             Keeping Britain cool
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-ink/60">
-            UK summers aren&apos;t what they used to be. Frostline exists to help
+            UK summers aren&apos;t what they used to be. Breezely exists to help
             you stay comfortable at home and at work — with cooling appliances
             that are easy to buy, easy to live with, and properly backed.
           </p>
@@ -45,7 +45,7 @@ export default function AboutPage() {
           <p className="mt-4 text-ink/70">
             After one too many sleepless, sweltering nights, we went looking for
             a portable air conditioner and found the market confusing, overpriced
-            and full of jargon. So we built Frostline: a focused range of
+            and full of jargon. So we built Breezely: a focused range of
             genuinely good cooling appliances, clearly explained, fairly priced
             and delivered free.
           </p>

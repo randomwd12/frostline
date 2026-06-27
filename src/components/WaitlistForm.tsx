@@ -11,10 +11,10 @@ export default function WaitlistForm({ dark = false }: { dark?: boolean }) {
     if (!email) return;
     // No backend yet — store interest locally so nothing is lost before launch.
     try {
-      const raw = localStorage.getItem("frostline-waitlist");
+      const raw = localStorage.getItem("breezely-waitlist");
       const list: string[] = raw ? JSON.parse(raw) : [];
       if (!list.includes(email)) list.push(email);
-      localStorage.setItem("frostline-waitlist", JSON.stringify(list));
+      localStorage.setItem("breezely-waitlist", JSON.stringify(list));
     } catch {
       // ignore
     }

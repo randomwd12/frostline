@@ -1,4 +1,4 @@
-# Frostline ❄️
+# Breezely ❄️
 
 A UK e-commerce store selling portable air conditioners, fans, evaporative
 coolers and dehumidifiers — built and ready for the next British summer.
@@ -43,5 +43,5 @@ This ships as a fully working catalogue + cart. To take real money:
    `localStorage`. Point it at your email/CRM provider (e.g. Mailchimp, Klaviyo).
 3. **Real product images** — swap the emoji tiles in `src/components/ProductImage.tsx`
    for photos (add an `image` field to each product and use `next/image`).
-4. **Branding** — the name "Frostline" lives in the Navbar, Footer, layout
+4. **Branding** — the name "Breezely" lives in the Navbar, Footer, layout
    metadata and content pages; rename there if needed.

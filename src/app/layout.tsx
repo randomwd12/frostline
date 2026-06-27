@@ -9,7 +9,7 @@ import CartDrawer from "@/components/CartDrawer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Frostline — Portable Air Conditioners, Fans & Cooling | UK",
+  title: "Breezely — Portable Air Conditioners, Fans & Cooling | UK",
   description:
     "Beat the British heatwave. Portable air conditioners, fans, evaporative coolers and dehumidifiers with fast, free UK delivery and a 2-year guarantee.",
 };

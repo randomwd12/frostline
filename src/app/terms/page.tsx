@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions — Frostline",
+  title: "Terms & Conditions — Breezely",
 };
 
 export default function TermsPage() {
@@ -14,7 +14,7 @@ export default function TermsPage() {
 
       <div className="mt-8 space-y-6 text-ink/70">
         <p>
-          These are placeholder terms for the Frostline demo store. Replace them
+          These are placeholder terms for the Breezely demo store. Replace them
           with your finalised terms before trading.
         </p>
         <div>

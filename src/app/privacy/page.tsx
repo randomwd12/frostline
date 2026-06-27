@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Frostline",
+  title: "Privacy Policy — Breezely",
 };
 
 export default function PrivacyPage() {
@@ -14,7 +14,7 @@ export default function PrivacyPage() {
 
       <div className="prose mt-8 space-y-6 text-ink/70">
         <p>
-          This is a placeholder privacy policy for the Frostline demo store.
+          This is a placeholder privacy policy for the Breezely demo store.
           Replace it with your finalised policy before going live.
         </p>
         <div>
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
           <p className="mt-2">
             Under UK GDPR you can request access to, correction of, or deletion
             of your personal data at any time by emailing
-            hello@frostline.co.uk.
+            hello@breezely.co.uk.
           </p>
         </div>
       </div>

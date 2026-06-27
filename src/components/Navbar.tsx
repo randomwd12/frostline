@@ -18,7 +18,7 @@ export default function Navbar() {
           className="flex items-center gap-2 text-xl font-extrabold tracking-tight text-ink"
         >
           <span className="text-2xl">❄️</span>
-          Frost<span className="text-accent">line</span>
+          Breeze<span className="text-accent">ly</span>
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">

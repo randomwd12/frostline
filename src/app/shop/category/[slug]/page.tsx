@@ -19,9 +19,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const category = getCategory(slug);
-  if (!category) return { title: "Category not found — Frostline" };
+  if (!category) return { title: "Category not found — Breezely" };
   return {
-    title: `${category.name} — Frostline`,
+    title: `${category.name} — Breezely`,
     description: category.blurb,
   };
 }

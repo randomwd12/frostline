@@ -94,7 +94,7 @@ export default function Home() {
               Shop by category
             </h2>
             <p className="mt-3 max-w-lg text-ink/60">
-              Whatever the forecast throws at you, there&apos;s a Frostline for that.
+              Whatever the forecast throws at you, there&apos;s a Breezely for that.
             </p>
           </div>
           <Link href="/shop" className="hidden text-sm font-semibold text-ice-600 hover:text-ice-700 sm:block">

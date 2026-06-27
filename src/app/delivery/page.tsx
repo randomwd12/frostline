@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Delivery & Returns — Frostline",
+  title: "Delivery & Returns — Breezely",
   description: "Free UK delivery, next-day options and a hassle-free 30-day returns policy.",
 };
 
@@ -37,8 +37,8 @@ export default function DeliveryPage() {
             Changed your mind? Return any unused item in its original packaging
             within <strong>30 days</strong> for a full refund. Start a return by
             emailing{" "}
-            <a href="mailto:hello@frostline.co.uk" className="text-ice-600 hover:underline">
-              hello@frostline.co.uk
+            <a href="mailto:hello@breezely.co.uk" className="text-ice-600 hover:underline">
+              hello@breezely.co.uk
             </a>{" "}
             and we&apos;ll arrange free collection.
           </p>
