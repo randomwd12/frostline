@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { categories } from "@/lib/products";
 import { useCart } from "@/context/CartContext";
+import Logo from "./Logo";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -13,12 +14,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-md">
       <nav className="container-px flex h-16 items-center justify-between">
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-xl font-extrabold tracking-tight text-ink"
-        >
-          <span className="text-2xl">❄️</span>
-          Breeze<span className="text-accent">ly</span>
+        <Link href="/" aria-label="Breezely home">
+          <Logo tone="dark" />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">

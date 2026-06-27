@@ -1,17 +1,14 @@
 import Link from "next/link";
 import { categories } from "@/lib/products";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
     <footer className="mt-auto border-t border-black/5 bg-ink text-white/70">
       <div className="container-px grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-xl font-extrabold text-white"
-          >
-            <span className="text-2xl">❄️</span>
-            Breeze<span className="text-accent-glow">ly</span>
+          <Link href="/" aria-label="Breezely home">
+            <Logo tone="light" />
           </Link>
           <p className="mt-4 max-w-xs text-sm text-white/55">
             Portable cooling for the British summer. Fast, free UK delivery and
