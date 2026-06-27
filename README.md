@@ -21,27 +21,49 @@ npm start        # serve the production build
 - **Category pages** (`/shop/category/[slug]`)
 - **Product pages** (`/shop/[slug]`) — gallery tile, specs, features, related items
 - **Cart** — slide-out drawer + full cart page, persisted to `localStorage`
-- **Checkout** (`/checkout`) — delivery form + order summary (payment is a
-  placeholder; see below)
+- **Checkout** (`/checkout`) — Stripe Checkout integration (see below)
 - Content pages: About, Help/FAQ, Delivery & Returns, Privacy, Terms
 
 ## Editing the catalogue
 
 All products and categories live in **`src/lib/products.ts`**. Each product has
-a price (GBP), specs, features, rating and a gradient/emoji "image" tile. Edit
-that one file to add, remove or reprice products — every page updates
-automatically.
+a price (GBP), specs, features, rating, an SVG illustration (`art`), an optional
+real-photo `image` URL, and a `soldOut` flag. Edit that one file to add, remove,
+reprice, restock or hide products — every page updates automatically.
 
-## Going live — next steps
+## Payments (Stripe)
 
-This ships as a fully working catalogue + cart. To take real money:
+Checkout is already wired to **Stripe Checkout**:
 
-1. **Payments** — wire Stripe (or similar) into `src/app/checkout/page.tsx`
-   where `placeOrder` currently just confirms the order. Add a checkout API
-   route and your keys via environment variables.
-2. **Waitlist** — `src/components/WaitlistForm.tsx` currently stores emails in
-   `localStorage`. Point it at your email/CRM provider (e.g. Mailchimp, Klaviyo).
-3. **Real product images** — swap the emoji tiles in `src/components/ProductImage.tsx`
-   for photos (add an `image` field to each product and use `next/image`).
-4. **Branding** — the name "Breezely" lives in the Navbar, Footer, layout
-   metadata and content pages; rename there if needed.
+- `src/app/api/checkout/route.ts` builds a payment session from the server-side
+  catalogue (prices can't be tampered with; sold-out items are skipped).
+- The checkout page redirects to Stripe's hosted page for address + card entry.
+- `/checkout/success` clears the basket after a successful payment.
+
+To enable it, create `.env.local` (see `.env.example`):
+
+```bash
+STRIPE_SECRET_KEY=sk_test_...        # from dashboard.stripe.com/apikeys
+NEXT_PUBLIC_BASE_URL=                 # leave blank locally; set to your domain in prod
+```
+
+Use **test keys** while developing — card `4242 4242 4242 4242`, any future
+expiry/CVC — then swap to live keys when ready.
+
+## Deploying (Vercel)
+
+This repo is on GitHub, so deploying is a few clicks:
+
+1. Go to **https://vercel.com/new** and import the GitHub repo.
+2. Framework preset auto-detects **Next.js** — no config needed.
+3. Add the environment variables above (`STRIPE_SECRET_KEY`, and
+   `NEXT_PUBLIC_BASE_URL` set to your Vercel/production URL).
+4. Deploy. Every push to `main` then auto-deploys.
+
+## Other go-live steps
+
+- **Waitlist** — `src/components/WaitlistForm.tsx` stores emails in
+  `localStorage`. Point it at your email/CRM provider (Mailchimp, Klaviyo, etc.).
+- **Real product images** — add an `image` URL to any product in
+  `src/lib/products.ts` and it replaces the SVG illustration automatically
+  (allowed image hosts are configured in `next.config.ts`).
