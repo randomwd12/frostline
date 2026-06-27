@@ -8,31 +8,26 @@ import { gbp } from "@/lib/format";
 import ProductArt from "@/components/ProductArt";
 
 export default function CheckoutPage() {
-  const { items, subtotal, clear } = useCart();
-  const [placed, setPlaced] = useState(false);
+  const { items, subtotal } = useCart();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function placeOrder(e: React.FormEvent) {
-    e.preventDefault();
-    // Placeholder: real payment (Stripe) drops in here later.
-    setPlaced(true);
-    clear();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  if (placed) {
-    return (
-      <div className="container-px flex flex-col items-center gap-4 py-28 text-center">
-        <span className="text-6xl">✅</span>
-        <h1 className="text-3xl font-extrabold text-ink">Order confirmed!</h1>
-        <p className="max-w-md text-ink/60">
-          Thanks for your order. A confirmation email is on its way and your
-          cooling gear will be dispatched with free UK delivery.
-        </p>
-        <Link href="/shop" className="btn-accent mt-2">
-          Continue shopping
-        </Link>
-      </div>
-    );
+  async function payWithCard() {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Unable to start checkout.");
+      window.location.href = data.url;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+      setLoading(false);
+    }
   }
 
   if (items.length === 0) {
@@ -47,55 +42,52 @@ export default function CheckoutPage() {
     );
   }
 
-  const inputClass =
-    "w-full rounded-xl border border-black/10 px-4 py-3 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30";
-
   return (
     <div className="container-px py-14">
       <h1 className="text-3xl font-extrabold tracking-tight text-ink">Checkout</h1>
 
-      <form
-        onSubmit={placeOrder}
-        className="mt-10 grid gap-10 lg:grid-cols-[1fr_360px]"
-      >
-        <div className="space-y-8">
-          {/* Contact */}
-          <section>
-            <h2 className="font-bold text-ink">Contact</h2>
-            <div className="mt-4 grid gap-4">
-              <input required type="email" placeholder="Email address" className={inputClass} />
-              <input required type="tel" placeholder="Phone number" className={inputClass} />
-            </div>
-          </section>
-
-          {/* Delivery */}
-          <section>
-            <h2 className="font-bold text-ink">Delivery address</h2>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              <input required placeholder="First name" className={inputClass} />
-              <input required placeholder="Last name" className={inputClass} />
-              <input required placeholder="Address line 1" className={`${inputClass} sm:col-span-2`} />
-              <input placeholder="Address line 2 (optional)" className={`${inputClass} sm:col-span-2`} />
-              <input required placeholder="Town / City" className={inputClass} />
-              <input required placeholder="Postcode" className={inputClass} />
-            </div>
-          </section>
-
-          {/* Payment (placeholder) */}
-          <section>
-            <h2 className="font-bold text-ink">Payment</h2>
-            <p className="mt-1 text-sm text-ink/55">
-              Card payments are coming soon. For now your order is placed as a
-              reservation and we&apos;ll confirm by email.
+      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_380px]">
+        {/* Payment intro */}
+        <div className="space-y-6">
+          <section className="card p-6">
+            <h2 className="font-bold text-ink">Secure payment</h2>
+            <p className="mt-2 text-sm text-ink/60">
+              Pay securely by card. You&apos;ll be taken to our payment partner
+              Stripe to enter your delivery address and card details — your
+              information never touches our servers.
             </p>
-            <div className="mt-4 grid gap-4">
-              <input placeholder="Card number" className={inputClass} disabled />
-              <div className="grid grid-cols-2 gap-4">
-                <input placeholder="MM / YY" className={inputClass} disabled />
-                <input placeholder="CVC" className={inputClass} disabled />
-              </div>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink/55">
+              <span>🔒 256-bit encryption</span>
+              <span>💳 Visa, Mastercard, Amex</span>
+              <span>🚚 Free UK delivery</span>
             </div>
+
+            {error && (
+              <p className="mt-4 rounded-xl bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                {error}
+              </p>
+            )}
+
+            <button
+              onClick={payWithCard}
+              disabled={loading}
+              className="btn-accent mt-5 w-full"
+            >
+              {loading ? "Starting secure checkout…" : `Pay ${gbp(subtotal)} securely →`}
+            </button>
           </section>
+
+          <p className="text-xs text-ink/45">
+            By paying you agree to our{" "}
+            <Link href="/terms" className="text-ice-600 hover:underline">
+              terms
+            </Link>{" "}
+            and{" "}
+            <Link href="/privacy" className="text-ice-600 hover:underline">
+              privacy policy
+            </Link>
+            .
+          </p>
         </div>
 
         {/* Summary */}
@@ -139,14 +131,11 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          <button type="submit" className="btn-primary mt-6 w-full">
-            Place order
-          </button>
-          <p className="mt-3 text-center text-xs text-ink/40">
-            🔒 Your details are kept secure
-          </p>
+          <Link href="/cart" className="btn-ghost mt-5 w-full">
+            Back to basket
+          </Link>
         </aside>
-      </form>
+      </div>
     </div>
   );
 }
